@@ -9,7 +9,10 @@ NodeJS &amp; MongoDb API
 * DELETE `/api/elements/{id}` delete an element
 
 Example: http://localhost:8083/{API_ENDPOINT} <br>
-You can change the port under index.js!
+You can change the port under index.js!<br><br>
+
+Demo:
+http://34.230.50.209:8083/api
 
 ### Installation
 

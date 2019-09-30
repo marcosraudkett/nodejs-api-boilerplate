@@ -39,8 +39,8 @@ exports.new = function (req, res) {
 // Handle view element info
 exports.view = function (req, res) {
     Element.findById(req.params.id, function (err, element) {
-        if (err)
-            res.send(err);
+        //if (err)
+        //    res.send(err);
         if(element)
         {
             res.json({

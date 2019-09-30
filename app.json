@@ -1,0 +1,7 @@
+{
+  "name": "Node.js API",
+  "description": "A NodeJs RESTful API using MongoDb & ExpressJs",
+  "repository": "https://github.com/marcosraudkett/NodeJS-API",
+  "logo": "http://node-js-sample.herokuapp.com/node.svg",
+  "keywords": ["node", "express", "static"]
+}

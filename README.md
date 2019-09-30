@@ -33,7 +33,7 @@ git clone https://github.com/marcosraudkett/NodeJS-API.git
 
 ### Development server
 
-Install all dependencies using npm install
+Install all dependencies using npm install<br>
 Run by using command npm start
 ```
 npm install

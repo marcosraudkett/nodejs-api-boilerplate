@@ -9,7 +9,7 @@ NodeJS &amp; MongoDb API
 * DELETE `/api/elements/{id}` delete an element
 
 Example: http://localhost:8083/{API_ENDPOINT} <br>
-You can change the port under index.js!<br><br>
+Port can be changed inside index.js!<br><br>
 
 ### Installation
 
@@ -33,7 +33,7 @@ git clone https://github.com/marcosraudkett/NodeJS-API.git
 
 ### Development server
 
-Install all dependencies using npm install<br>
+Install all dependencies using `npm install`<br>
 Run by using command `npm start` or `node index.js`
 ```
 npm install

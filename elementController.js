@@ -21,11 +21,29 @@ exports.index = function (req, res) {
 exports.new = function (req, res) {
     var element = new Element();
     element.title = req.query.title ? req.query.title : element.title;
+    element.id = req.query.id;
+    element.type = req.query.type;
+
+    element.default = req.query.default;
+    //var element.default = [];
+
+    /*
+        for(var i=0; i<element.default.length; i++){
+            var type = output.push(element.default[i].type);
+            var id = output.push(element.default[i].id);
+            var prompt = output.push(element.default[i].prompt);
+        }
+    */
+
     element.prompt = req.query.prompt;
+    element.row = req.query.row;
+    element.colspan = req.query.colspan;
     element.width = req.query.width;
     element.colwidths = req.query.colwidths;
     element.main = req.query.main;
     element.editing = req.query.editing;
+    element.hiddenInMobile = req.query.hiddenInMobile;
+
     // save the element and check for errors
     element.save(function (err) {
         // if (err)
@@ -39,8 +57,8 @@ exports.new = function (req, res) {
 // Handle view element info
 exports.view = function (req, res) {
     Element.findById(req.params.id, function (err, element) {
-        if (err)
-            res.send(err);
+        //if (err)
+        //    res.send(err);
         if(element)
         {
             res.json({
@@ -59,12 +77,29 @@ exports.update = function (req, res) {
     Element.findById(req.params.id, function (err, element) {
         if (err)
             res.send(err);
-        element.title = req.query.title ? req.query.title : element.title;
-        element.prompt = req.query.prompt;
-        element.width = req.query.width;
-        element.colwidths = req.query.colwidths;
-        element.main = req.query.main;
-        element.editing = req.query.editing;
+            element.title = req.query.title ? req.query.title : element.title;
+            element.id = req.query.id;
+            element.type = req.query.type;
+
+            element.default = req.query.default;
+            //var element.default = [];
+
+            /*
+                for(var i=0; i<element.default.length; i++){
+                    var type = output.push(element.default[i].type);
+                    var id = output.push(element.default[i].id);
+                    var prompt = output.push(element.default[i].prompt);
+                }
+            */
+
+            element.prompt = req.query.prompt;
+            element.row = req.query.row;
+            element.colspan = req.query.colspan;
+            element.width = req.query.width;
+            element.colwidths = req.query.colwidths;
+            element.main = req.query.main;
+            element.editing = req.query.editing;
+            element.hiddenInMobile = req.query.hiddenInMobile;
 // save the element and check for errors
         element.save(function (err) {
             if (err)

@@ -49,7 +49,6 @@ export class MainViewComponent implements OnInit {
     this.getElementsAPI().subscribe((data: {}) => {
       console.log(data.data);
       this.elements = data.data;
-      restComponents = data.data;
       return this.elements;
     });
   }
@@ -60,9 +59,8 @@ export class MainViewComponent implements OnInit {
     this.getElements();
 
 /*
-    console.log(restComponents);
-    
 
+        
     for (var i in restComponents) {
         if (restComponents.hasOwnProperty(i)) {
             // Code and stuff

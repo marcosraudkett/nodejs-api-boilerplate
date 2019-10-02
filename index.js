@@ -14,6 +14,12 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*"); // to allow access from other domains (* = wildcard, any domain)
+  next();
+});
+
 // Connect to Mongoose and set connection variable
 mongoose.connect('mongodb://localhost:27017/mydb', { useNewUrlParser: true});
 var db = mongoose.connection;
@@ -32,6 +38,7 @@ app.get('/', (req, res) => res.send('API'));
 
 // Use Api routes in the App
 app.use('/api', apiRoutes);
+
 // Launch app to listen to specified port
 app.listen(port, function () {
     console.log("API running on port " + port);

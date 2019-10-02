@@ -1,6 +1,6 @@
 // elementController.js
 // Import element model
-Element = require('./elementModel');
+Element = require('../models/elementModel');
 // Handle index actions
 exports.index = function (req, res) {
     Element.get(function (err, elements) {
@@ -23,18 +23,7 @@ exports.new = function (req, res) {
     element.title = req.query.title ? req.query.title : element.title;
     element.id = req.query.id;
     element.type = req.query.type;
-
     element.default = req.query.default;
-    //var element.default = [];
-
-    /*
-        for(var i=0; i<element.default.length; i++){
-            var type = output.push(element.default[i].type);
-            var id = output.push(element.default[i].id);
-            var prompt = output.push(element.default[i].prompt);
-        }
-    */
-
     element.prompt = req.query.prompt;
     element.row = req.query.row;
     element.colspan = req.query.colspan;
@@ -56,7 +45,8 @@ exports.new = function (req, res) {
 };
 // Handle view element info
 exports.view = function (req, res) {
-    Element.findById(req.params.id, function (err, element) {
+    query = { id: req.params.id }
+    Element.find(query, function (err, element) {
         //if (err)
         //    res.send(err);
         if(element)
@@ -80,18 +70,7 @@ exports.update = function (req, res) {
             element.title = req.query.title ? req.query.title : element.title;
             element.id = req.query.id;
             element.type = req.query.type;
-
             element.default = req.query.default;
-            //var element.default = [];
-
-            /*
-                for(var i=0; i<element.default.length; i++){
-                    var type = output.push(element.default[i].type);
-                    var id = output.push(element.default[i].id);
-                    var prompt = output.push(element.default[i].prompt);
-                }
-            */
-
             element.prompt = req.query.prompt;
             element.row = req.query.row;
             element.colspan = req.query.colspan;
@@ -100,7 +79,7 @@ exports.update = function (req, res) {
             element.main = req.query.main;
             element.editing = req.query.editing;
             element.hiddenInMobile = req.query.hiddenInMobile;
-// save the element and check for errors
+        // save the element and check for errors
         element.save(function (err) {
             if (err)
                 res.json(err);

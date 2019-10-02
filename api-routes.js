@@ -9,7 +9,8 @@ router.get('/', function (req, res) {
     });
 });
 // Import element controller
-var elementController = require('./elementController');
+var elementController = require('./controllers/elementController');
+var formController = require('./controllers/formController');
 
 // Element routes
 router.route('/elements')
@@ -21,6 +22,17 @@ router.route('/elements/:id')
     .patch(elementController.update)
     .put(elementController.update)
     .delete(elementController.delete);
+
+// Form routes
+router.route('/forms')
+    .get(formController.index)
+    .post(formController.new);
+
+router.route('/forms/:id')
+    .get(formController.view)
+    .patch(formController.update)
+    .put(formController.update)
+    .delete(formController.delete);
     
 // Export API routes
 module.exports = router;

@@ -3,14 +3,17 @@
 let router = require('express').Router();
 // Set default/root API response
 router.get('/', function (req, res) {
+    res.send('OK');
     res.json({
         status: 'API Its Working',
         message: 'API crafted with love!',
     });
 });
+
 // Import element controller
 var elementController = require('./controllers/elementController');
 var formController = require('./controllers/formController');
+var formDataController = require('./controllers/formDataController');
 
 // Element routes
 router.route('/elements')
@@ -33,6 +36,17 @@ router.route('/forms/:id')
     .patch(formController.update)
     .put(formController.update)
     .delete(formController.delete);
+
+// FormData routes
+router.route('/formData')
+    .get(formDataController.index)
+    .post(formDataController.new);
+
+router.route('/formData/:id')
+    .get(formDataController.view)
+    .patch(formDataController.update)
+    .put(formDataController.update)
+    .delete(formDataController.delete);
     
 // Export API routes
 module.exports = router;

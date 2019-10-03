@@ -9,6 +9,7 @@ exports.index = function (req, res) {
                 status: "error",
                 message: err,
             });
+            res.status(404);
         }
         res.json({
             status: "success",
@@ -49,13 +50,14 @@ exports.view = function (req, res) {
     Element.find(query, function (err, element) {
         //if (err)
         //    res.send(err);
-        if(element)
+        if(element != '')
         {
             res.json({
                 message: 'Element fetched.',
                 data: element
             });
         } else {
+            res.status(404);
             res.json({
                 message: 'Please check the ID.'
             });
@@ -67,18 +69,18 @@ exports.update = function (req, res) {
     Element.findById(req.params.id, function (err, element) {
         if (err)
             res.send(err);
-            element.title = req.query.title ? req.query.title : element.title;
-            element.id = req.query.id;
-            element.type = req.query.type;
-            element.default = req.query.default;
-            element.prompt = req.query.prompt;
-            element.row = req.query.row;
-            element.colspan = req.query.colspan;
-            element.width = req.query.width;
-            element.colwidths = req.query.colwidths;
-            element.main = req.query.main;
-            element.editing = req.query.editing;
-            element.hiddenInMobile = req.query.hiddenInMobile;
+        element.title = req.query.title ? req.query.title : element.title;
+        element.id = req.query.id;
+        element.type = req.query.type;
+        element.default = req.query.default;
+        element.prompt = req.query.prompt;
+        element.row = req.query.row;
+        element.colspan = req.query.colspan;
+        element.width = req.query.width;
+        element.colwidths = req.query.colwidths;
+        element.main = req.query.main;
+        element.editing = req.query.editing;
+        element.hiddenInMobile = req.query.hiddenInMobile;
         // save the element and check for errors
         element.save(function (err) {
             if (err)
@@ -97,7 +99,7 @@ exports.delete = function (req, res) {
     }, function (err, element) {
         if (err)
             res.send(err);
-res.json({
+        res.json({
             status: "success",
             message: 'element deleted'
         });

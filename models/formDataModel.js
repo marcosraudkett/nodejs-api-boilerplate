@@ -1,8 +1,12 @@
 // ElementModel.js
 var mongoose = require('mongoose');
 // Setup schema
-var formSchema = mongoose.Schema({
-    title: {
+var formDataSchema = mongoose.Schema({
+    form_id: {
+        type: String,
+        required: true
+    },
+    formData: {
         type: String,
         required: true
     },
@@ -12,7 +16,7 @@ var formSchema = mongoose.Schema({
     }
 });
 // Export Form model
-var Form = module.exports = mongoose.model('form', formSchema);
+var FormData = module.exports = mongoose.model('formData', formDataSchema);
 module.exports.get = function (callback, limit) {
-    Form.find(callback).limit(limit);
+    FormData.find(callback).limit(limit);
 }

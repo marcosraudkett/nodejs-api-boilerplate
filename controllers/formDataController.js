@@ -46,7 +46,8 @@ exports.view = function (req, res) {
 };
 // Handle update form info
 exports.update = function (req, res) {
-    FormData.findById(req.params.id, function (err, formData) {
+    query = { form_id: req.params.id }
+    FormData.find(query, function (err, formData) {
         if (err)
             res.send(err);
             /* id = form id */

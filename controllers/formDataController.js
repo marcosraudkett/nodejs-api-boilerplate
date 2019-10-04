@@ -44,22 +44,38 @@ exports.view = function (req, res) {
         }
     });
 };
-// Handle update form info
+// Handle update formData info using form_id
 exports.update = function (req, res) {
-    query = { form_id: req.params.id }
-    FormData.find(query, function (err, formData) {
-        if (err)
-            res.send(err);
-            /* id = form id */
-        formData.formData = req.query.formData.split('"').join("'").replace(/(\r\n|\n|\r)/gm, "").split(" ").join("");
-
-        // save the form and check for errors
-        formData.save(function (err) {
+    /*
+        First we find the correct formData ID using the form_id
+        and then we can update formData using its own ID.
+    */
+    var formDataId;
+    async function fetchFormDataID() {
+        return new Promise((resolve, reject) => {
+            try {
+                FormData.find({form_id: req.params.id}, function (err, formData) {
+                    formDataId = formData[0]['_id'];
+                    resolve();
+                });
+            } catch (error) {
+              reject(error);
+            }
+        });
+    };
+    fetchFormDataID().then(() => {
+        FormData.findById(formDataId, function (err, formData) {
             if (err)
-                res.json(err);
-            res.json({
-                message: 'FormData data updated',
-                data: formData
+                res.send(err);
+            formData.formData = req.query.formData.split('"').join("'").replace(/(\r\n|\n|\r)/gm, "").split(" ").join("");
+            // save the formData and check for errors
+            formData.save(function (err) {
+                if (err)
+                    res.json(err);
+                res.json({
+                    message: 'Form updated',
+                    data: formData
+                });
             });
         });
     });

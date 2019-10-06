@@ -11,8 +11,6 @@ NodeJS &amp; MongoDb API
 Example: http://localhost:8083/{API_ENDPOINT} <br>
 You can change the port under index.js!<br><br>
 
-Demo: http://node-api.demo.marcosraudkett.com:8080
-
 ### Installation
 
 MongoDb Installation:

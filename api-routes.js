@@ -12,8 +12,6 @@ router.get('/', function (req, res) {
 
 // Import element controller
 var elementController = require('./controllers/elementController');
-var formController = require('./controllers/formController');
-var formDataController = require('./controllers/formDataController');
 
 // Element routes
 router.route('/elements')
@@ -25,28 +23,6 @@ router.route('/elements/:id')
     .patch(elementController.update)
     .put(elementController.update)
     .delete(elementController.delete);
-
-// Form routes
-router.route('/forms')
-    .get(formController.index)
-    .post(formController.new);
-
-router.route('/forms/:id')
-    .get(formController.view)
-    .patch(formController.update)
-    .put(formController.update)
-    .delete(formController.delete);
-
-// FormData routes
-router.route('/formData')
-    .get(formDataController.index)
-    .post(formDataController.new);
-
-router.route('/formData/:id')
-    .get(formDataController.view)
-    .patch(formDataController.update)
-    .put(formDataController.update)
-    .delete(formDataController.delete);
     
 // Export API routes
 module.exports = router;

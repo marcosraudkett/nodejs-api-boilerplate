@@ -1,11 +1,27 @@
 // Import express
 let express = require('express');
+// Import CORS
+var cors = require('cors');
 // Import Body parser
 let bodyParser = require('body-parser');
 // Import Mongoose
 let mongoose = require('mongoose');
 // Initialise the app
 let app = express();
+
+/* CORS options 
+   * = Wildcard, Any domain can access this api
+   you can change the origin to your own domain.
+*/
+var corsOptions = {
+  "origin": "*",
+  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+  "preflightContinue": false,
+  "optionsSuccessStatus": 204
+}
+
+/* set CORS to wildcard (all routes) */
+app.options('*', cors(corsOptions));
 
 // Import routes
 let apiRoutes = require("./api-routes");
@@ -14,11 +30,6 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
-
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*"); // to allow access from other domains (* = wildcard, any domain)
-  next();
-});
 
 // Connect to Mongoose and set connection variable
 mongoose.connect('mongodb://localhost:27017/mydb', { useNewUrlParser: true});
@@ -37,7 +48,7 @@ var port = process.env.PORT || 8083;
 app.get('/', (req, res) => res.send('API'));
 
 // Use Api routes in the App
-app.use('/api', apiRoutes);
+app.use('/api', cors(corsOptions), apiRoutes, cors(corsOptions));
 
 // Launch app to listen to specified port
 app.listen(port, function () {

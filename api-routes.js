@@ -1,7 +1,6 @@
-// api-routes.js
-// Initialize express router
+// ** initialize express router
 let router = require('express').Router();
-// Set default/root API response
+// ** set default/root API response
 router.get('/', function (req, res) {
     res.send('OK');
     res.json({
@@ -10,19 +9,19 @@ router.get('/', function (req, res) {
     });
 });
 
-// Import element controller
-var elementController = require('./controllers/elementController');
+// ** import contact controller
+const contactController = require('./controllers/contactController');
 
-// Element routes
-router.route('/elements')
-    .get(elementController.index)
-    .post(elementController.new);
+// ** contact routes
+router.route('/contacts')
+    .get(contactController.index)
+    .post(contactController.new);
 
-router.route('/elements/:id')
-    .get(elementController.view)
-    .patch(elementController.update)
-    .put(elementController.update)
-    .delete(elementController.delete);
+router.route('/contacts/:id')
+    .get(contactController.view)
+    .patch(contactController.update)
+    .put(contactController.update)
+    .delete(contactController.delete);
     
-// Export API routes
+// ** export API routes
 module.exports = router;

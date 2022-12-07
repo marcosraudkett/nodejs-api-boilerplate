@@ -1,3 +1,0 @@
-Installing NodeJS-API onto Amazon AWS EC2 Virtual Machine and running it 24/7
-
-....

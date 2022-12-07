@@ -1,7 +1,7 @@
 {
-  "name": "NodeJS-API",
+  "name": "nodejs_api_broilerplate",
   "version": "0.1.0",
-  "description": "NodeJs RESTful API using MongoDb & ExpressJs",
+  "description": "NodeJs RESTful API using MongoDb & ExpressJs Broilerplate",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"

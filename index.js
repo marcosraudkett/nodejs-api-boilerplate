@@ -1,7 +1,7 @@
 // Import express
 let express = require('express');
 // Import CORS
-var cors = require('cors');
+let cors = require('cors');
 // Import Body parser
 let bodyParser = require('body-parser');
 // Import Mongoose
@@ -13,7 +13,7 @@ let app = express();
    * = Wildcard, Any domain can access this api
    you can change the origin to your own domain.
 */
-var corsOptions = {
+let corsOptions = {
   "origin": "*",
   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
   "preflightContinue": false,
@@ -33,7 +33,7 @@ app.use(bodyParser.json());
 
 // Connect to Mongoose and set connection variable
 mongoose.connect('mongodb://localhost:27017/mydb', { useNewUrlParser: true});
-var db = mongoose.connection;
+let db = mongoose.connection;
 
 // Added check for DB connection
 if(!db)
@@ -42,7 +42,7 @@ else
     console.log("Db connected successfully")
 
 // Setup server port
-var port = process.env.PORT || 8083;
+let port = process.env.PORT || 8083;
 
 // Send message for default URL
 app.get('/', (req, res) => res.send('API'));

@@ -1,17 +1,36 @@
 # NodeJS-API
-NodeJS API Broilerplate using MongoDb & ExpressJs.
+A simple NodeJS API broilerplate using MongoDb & ExpressJs.
 
-### API Endpoints
+## Getting started
+
+### Environment variables
+Make a copy of `.env.example` as `.env`:
+```
+cp .env.example .env
+```
+
+### Docker 💪🏽
+
+Start with docker-compose:
+```
+docker-compose up -d
+```
+
+### Locally:
+```
+...to be added...
+```
+
+## Endpoints
 * GET `/api/contacts` list all
 * POST `/api/contacts` add new
 * GET `/api/contacts/{id}` retreive single 
 * PUT `/api/contacts/{id}` update 
 * DELETE `/api/contacts/{id}` delete
 
-Example: http://localhost:8083/{API_ENDPOINT} <br>
 You can change the port under index.js!<br><br>
 
-### Installation
+## Installation
 
 MongoDb Installation:
 https://docs.mongodb.com/manual/administration/install-community/
@@ -31,7 +50,7 @@ mongod --config /usr/local/etc/mongod.conf
 git clone https://github.com/marcosraudkett/NodeJS-API-Broilerplate.git
 ```
 
-### Development server
+## Development server
 
 Install all dependencies using npm install<br>
 Run by using command npm start

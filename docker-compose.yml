@@ -1,0 +1,33 @@
+version: '3'
+services:
+  node:
+    container_name: broilerplate-api
+    restart: always
+    build: 
+      context: ./src
+      dockerfile: Dockerfile
+    env_file: .env
+    ports:
+      - 80:3000
+    networks: 
+      - api
+    depends_on:
+      - mongo
+    volumes:
+      - ./:/code
+  mongo:
+    container_name: broilerplate-mongo-db
+    image: mongo
+    ports:
+      - 27017:27017
+    networks: 
+      - api
+    volumes:
+      - mongodb:/data/db
+
+networks:
+  api:
+    driver: bridge
+
+volumes:
+  mongodb:
